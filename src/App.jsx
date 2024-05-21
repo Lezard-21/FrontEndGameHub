@@ -1,53 +1,34 @@
 import { useState } from 'react'
+import { Link } from 'react-router-dom'
+
+
+import NavBar from './components/NavBar.jsx'
+import Logo from './components/Logo.jsx'
 
 function App() {
   const [count, setCount] = useState(0)
 
   return (
     <>
-     <section class="hero is-primary is-fullheight">
-  <div class="hero-body">
-    <div class="container">
-      <div class="columns is-centered">
-        <div class="column is-5-tablet is-4-desktop is-3-widescreen">
-          <form action="" class="box">
-            <div class="field">
-              <label for="" class="label">Correo</label>
-              <div class="control has-icons-left">
-                <input type="email" placeholder="e.g. bobsmith@gmail.com" class="input" required />
-                <span class="icon is-small is-left">
-                  <i class="fa fa-envelope"></i>
-                </span>
-              </div>
-            </div>
-            <div class="field">
-              <label htmlFor="" class="label">Contraseña</label>
-              <div class="control has-icons-left">
-                <input type="password" placeholder="*******" class="input" required />
-                <span class="icon is-small is-left">
-                  <i class="fa fa-lock"></i>
-                </span>
-              </div>
-            </div>
-            <div class="field">
-              <label htmlFor="remember" class="checkbox">
-                <input type="checkbox" id='remember' />
-               Remember me
-              </label>
-            </div>
-            <div class="field">
-              <button class="button is-success">
-                Entrar
-              </button>
-            </div>
-          </form>
+      <div className="canva" >
+        <img className='fondo' src='./src/assets/juegos2.jpg' alt="fondo" />
+        <div class="hero is-fullheight" >
+          <NavBar />
+          <div class="container">
+            <section class="section  has-text-centered is-info">
+              <h1 class="title is-1"><Logo /></h1>
+              <h2 class="subtitle is-3 has-text-white">
+              En Game Hub, nos apasionan los videojuegos tanto como a ti. 
+              <p class="subtitle is-5  ">Aquí encontrarás las últimas noticias, análisis detallados, y reseñas de los títulos más esperados y de los clásicos que han dejado huella en la historia del gaming. Nuestro equipo de expertos está dedicado a traerte contenido de calidad, desde las novedades más candentes hasta guías y trucos que te ayudarán a dominar tus juegos favoritos.</p>
+              </h2>
+              <a href="#" class="bd-tw-button button is-large ">Explorar</a>
+            </section>
+          </div>
         </div>
       </div>
-    </div>
-  </div>
-</section>
     </>
   )
 }
+
 
 export default App

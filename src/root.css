@@ -1,0 +1,39 @@
+.logo {
+    display: flex;
+    justify-content: center;
+    align-self: center;
+    padding: 10px;
+}
+
+.titulo1 {
+    color: white;
+}
+
+.titulo2 {
+    color: black;
+    background-color: #c2c9ff;
+    padding: 5px;
+    border-radius: 5px;
+}
+
+.canva {
+    position: relative;
+    z-index: 10;
+    background-repeat: no-repeat;
+    background-size: cover;
+    backdrop-filter: opacity(20%);
+}
+
+.fondo{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    filter: opacity(50%) blur(3px);
+}
+
+.contenedor-juegos{
+    padding: 40px;
+}
