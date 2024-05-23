@@ -21,7 +21,7 @@ const NavBar = () => {
 
             <div id="navbarExampleTransparentExample" class="navbar-menu">
                 <div class="navbar-start">
-                    <Link to="/videojuegos" class="navbar-item has-text-white has-text-link-light  ">Videojuegos </Link>
+                    {/* <Link to="/videojuegos" class="navbar-item has-text-white has-text-link-light  ">Videojuegos </Link> */}
                     {/* <a class="navbar-item has-text-white has-text-link-light  " href="#"> Videojuegos </a> */}
 
                 </div>
