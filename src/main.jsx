@@ -1,16 +1,11 @@
 import React from 'react'
 import ReactDOM from 'react-dom/client'
 import App from './App.jsx'
+import ListaVideoJuegos from './routes/ListaVideojuegos.jsx'
 import Login from './routes/Login.jsx'
-import ListaVideojuegos from './routes/ListaVideojuegos.jsx'
 import  './root.css'
 
-
-import {
-  createBrowserRouter,
-  RouterProvider,
-} from "react-router-dom";
-
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
 
 const router = createBrowserRouter([
   {
@@ -21,8 +16,7 @@ const router = createBrowserRouter([
     element: <Login />
   },{
     path: "/videojuegos",
-    element: <ListaVideojuegos />
-  }
+    element: <ListaVideoJuegos />}
 ]);
 
 ReactDOM.createRoot(document.getElementById('root')).render(

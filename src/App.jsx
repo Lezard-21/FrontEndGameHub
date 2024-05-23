@@ -1,7 +1,6 @@
 import { useState } from 'react'
 import { Link } from 'react-router-dom'
 
-
 import NavBar from './components/NavBar.jsx'
 import Logo from './components/Logo.jsx'
 
@@ -33,6 +32,5 @@ function App() {
     </>
   )
 }
-
 
 export default App
