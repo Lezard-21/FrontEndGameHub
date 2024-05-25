@@ -1,16 +1,34 @@
 import React from 'react'
 import Logo from './Logo'
 
+import { useAuth } from '../auth/AuthContext.jsx';
 import { Link } from 'react-router-dom'
 
+import { useNavigate } from 'react-router-dom';
+
 const NavBar = () => {
+    const navigate = useNavigate()
+
+    const {
+        authUser,
+        setAuthUser,
+        isLoggedIn,
+        setIsLoggedIn
+    } = useAuth()
+
+    const cerrarSesion = () =>{
+        isLoggedIn(false)
+        setAuthUser(null)
+        navigate("/login")
+    }
+
     return (
         <nav class="navbar is-transparent">
             <div class="navbar-brand">
                 <Link to="/">
                     <Logo />
                 </Link>
-               
+
                 <div class="navbar-burger js-burger" data-target="navbarExampleTransparentExample">
                     <span></span>
                     <span></span>
@@ -29,13 +47,18 @@ const NavBar = () => {
                 <div class="navbar-end">
                     <div class="navbar-item">
                         <div class="field is-grouped">
-                            <p class="control">
+                            {isLoggedIn ? (
+                                <Link to="/login">
+                                    <button type="button" class="button is-white" onClick={cerrarSesion}>Cerrar sesion</button>
+                                </Link>
+                            ) : (
                                 <Link to="/login">
                                     <a class="button is-primary has-background-link-light" href="#">
                                         <span>Iniciar Sesion</span>
                                     </a>
                                 </Link>
-                            </p>
+                            )}
+
                         </div>
                     </div>
                 </div>

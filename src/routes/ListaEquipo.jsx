@@ -4,7 +4,7 @@ import CardVideojuego from '../components/CardVideojuego'
 
 const ListaEquipo = () => {
     return(
-        
+        <div></div>
     )
 }
 

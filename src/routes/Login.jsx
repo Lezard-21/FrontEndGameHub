@@ -1,7 +1,13 @@
 import  { useState } from 'react';
+import { useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
 import NavBar from '../components/NavBar.jsx';
 import Logo from '../components/Logo.jsx';
+
+import { Toaster, toast } from 'sonner'
+
+import  {useAuth}  from '../auth/AuthContext.jsx';
+
 
 const API_URL = 'http://localhost:3000/api/auth';
 
@@ -9,9 +15,17 @@ const Login = () => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const navigate = useNavigate();
+
+  const {
+    authUser, 
+    setAuthUser,
+    isLoggedIn, 
+    setIsLoggedIn
+  } = useAuth()
+
+
   const handleSubmit = async (event) => {
     event.preventDefault();
-
     try {
       const response = await fetch(API_URL, {
         method: 'POST',
@@ -25,20 +39,31 @@ const Login = () => {
       if (response.ok) {
         const data = await response.json();
         console.log('Login successful', data);
+        setIsLoggedIn(true)
+        setAuthUser({
+          username: data.userName,
+          rol: data.rol,
+          token: data.token
+        })
         navigate('/videojuegos'); // Redirige a la vista Home
       } else {
         console.error('Login failed');
+        toast.error('Verifica tus datos e intentalo de nuevo');
       }
     } catch (error) {
       console.error('Error occurred:', error);
     }
+    
   };
 
   return (
+    
     <div className="canva">
+      
       <img className='fondo' src='./src/assets/juegos2.jpg' alt="fondo" />
       <section className="hero is-fullheight">
         <NavBar />
+        <Toaster position="top-center" expand={false} richColors  />
         <div className="hero-body">
           <div className="container">
             <div className="columns is-centered">
