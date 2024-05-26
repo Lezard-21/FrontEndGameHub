@@ -16,8 +16,8 @@ const NavBar = () => {
         setIsLoggedIn
     } = useAuth()
 
-    const cerrarSesion = () =>{
-        isLoggedIn(false)
+    const cerrarSesion = () => {
+        setIsLoggedIn(false)
         setAuthUser(null)
         navigate("/login")
     }
@@ -48,9 +48,7 @@ const NavBar = () => {
                     <div class="navbar-item">
                         <div class="field is-grouped">
                             {isLoggedIn ? (
-                                <Link to="/login">
-                                    <button type="button" class="button is-white" onClick={cerrarSesion}>Cerrar sesion</button>
-                                </Link>
+                                <button type="button" class="button is-white" onClick={cerrarSesion}>Cerrar sesion</button>
                             ) : (
                                 <Link to="/login">
                                     <a class="button is-primary has-background-link-light" href="#">
