@@ -6,6 +6,7 @@ import Login from './routes/Login.jsx'
 import  './root.css'
 
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import ListaEquipo from './routes/ListaEquipo.jsx'
 
 const router = createBrowserRouter([
   {
@@ -16,7 +17,12 @@ const router = createBrowserRouter([
     element: <Login />
   },{
     path: "/videojuegos",
-    element: <ListaVideoJuegos />}
+    element: <ListaVideoJuegos />
+  },{
+    path: "/equipos",
+    element: <ListaEquipo />
+  }
+    
 ]);
 
 ReactDOM.createRoot(document.getElementById('root')).render(

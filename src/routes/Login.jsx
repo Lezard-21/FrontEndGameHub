@@ -2,9 +2,7 @@ import  { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import NavBar from '../components/NavBar.jsx';
 import Logo from '../components/Logo.jsx';
-
-const API_URL = 'http://localhost:3000/api/auth';
-
+import { API_URL } from '../App.jsx';
 const Login = () => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
@@ -13,7 +11,7 @@ const Login = () => {
     event.preventDefault();
 
     try {
-      const response = await fetch(API_URL, {
+      const response = await fetch(`${API_URL}/auth`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -23,9 +21,7 @@ const Login = () => {
 
       console.log("Response received:", response);
       if (response.ok) {
-        const data = await response.json();
-        console.log('Login successful', data);
-        navigate('/videojuegos'); // Redirige a la vista Home
+        navigate('/equipos'); // Redirige a la vista Home
       } else {
         console.error('Login failed');
       }

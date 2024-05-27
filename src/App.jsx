@@ -4,7 +4,10 @@ import { Link } from 'react-router-dom'
 import NavBar from './components/NavBar.jsx'
 import Logo from './components/Logo.jsx'
 
+const API_URL = 'http://localhost:3000/api';
+
 function App() {
+  
   const [count, setCount] = useState(0)
 
   return (
@@ -30,3 +33,4 @@ function App() {
 }
 
 export default App
+export { API_URL }
