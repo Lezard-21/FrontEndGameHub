@@ -29,7 +29,7 @@ const NavBarLogin = () => {
     }
 
     return (
-        <nav className="navbar is-transparent">
+        <nav className="navbar nav_bar is-transparent">
             
             <div className="navbar-brand">
                 <Link to="/">

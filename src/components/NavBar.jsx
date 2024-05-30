@@ -17,11 +17,7 @@ const NavBar = () => {
     } = useAuth()
 
     const cerrarSesion = () => {
-<<<<<<< HEAD
-        setIsLoggedIn(false)
-=======
         isLoggedIn(false)
->>>>>>> 13ea552fc9141290c2756931392d898b46239e24
         setAuthUser(null)
         navigate("/login")
     }
@@ -33,7 +29,7 @@ const NavBar = () => {
     }
 
     return (
-        <nav className="navbar is-transparent">
+        <nav className="navbar nav_bar is-transparent">
             
             <div className="navbar-brand">
                 <Link to="/">
@@ -75,13 +71,9 @@ const NavBar = () => {
                     <div className="navbar-item">
                         <div className="field is-grouped">
                             {isLoggedIn ? (
-<<<<<<< HEAD
-                                <button type="button" class="button is-white" onClick={cerrarSesion}>Cerrar sesion</button>
-=======
                                 <Link to="/login">
                                     <button type="button" className="button is-white" onClick={cerrarSesion}>Cerrar sesion</button>
                                 </Link>
->>>>>>> 13ea552fc9141290c2756931392d898b46239e24
                             ) : (
                                 <Link to="/login">
                                     <a className="button is-primary has-background-link-light" href="#">

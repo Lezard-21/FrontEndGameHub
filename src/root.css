@@ -37,3 +37,8 @@
 .contenedor-juegos{
     padding: 40px;
 }
+
+.nav_bar{
+    position: sticky;
+    top: 0;
+}

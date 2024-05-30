@@ -1,4 +1,7 @@
 import { useNavigate } from 'react-router-dom';
+import { deleteMethod} from '../http';
+import { URL_API } from '../constants/Constants';
+import { getTokenLocalStorage } from '../utils/localStorage';
 
 const CardEquipo = ({ equipo }) => {
     const disponibilidadColor = equipo.disponibilidad.nombre_disponibilidad === 'Disponible' ? 'green' : 'red';
@@ -7,6 +10,9 @@ const CardEquipo = ({ equipo }) => {
     const handleModificarClick = () => {
         navigate(`/autenticated/equipos/modificar/${equipo.equipoId}`, { state: { equipo } });
     };
+    const handleEliminar = () => {
+        deleteMethod(`${URL_API}/equipos`,getTokenLocalStorage(),equipo.equipoId)
+    }
 
     return (
         <div className="cell is-one-fifth">
@@ -29,9 +35,8 @@ const CardEquipo = ({ equipo }) => {
                     </div>
                 </div>
                 <footer className="card-footer">
-                    <a href="#" className="card-footer-item">Agregar</a>
-                    <a href="#" className="card-footer-item" onClick={handleModificarClick}>Modificar</a>
-                    <a href="#" className="card-footer-item">Eliminar</a>
+                    <a className="card-footer-item" onClick={handleModificarClick}>Modificar</a>
+                    <a className="card-footer-item" onClick={handleEliminar}>Eliminar</a>
                 </footer>
             </div>
         </div>

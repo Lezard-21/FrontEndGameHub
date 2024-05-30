@@ -5,6 +5,7 @@ import Logo from '../components/Logo.jsx';
 import { Toaster, toast } from 'sonner'
 import { API_URL } from '../App.jsx';
 import  {useAuth}  from '../auth/AuthContext.jsx';
+import { setTokenLocalStorage } from '../utils/localStorage.js';
 
 
 const Login = () => {
@@ -34,6 +35,7 @@ const Login = () => {
       if (response.ok) {
         const data = await response.json();
         console.log('Login successful', data);
+        setTokenLocalStorage('token', data.token)
         setIsLoggedIn(true)
         setAuthUser({
           username: data.userName,
