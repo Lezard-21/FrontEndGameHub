@@ -9,12 +9,16 @@ import './root.css'
 import ListaEquipo from './routes/ListaEquipo.jsx'
 import { AuthProvider } from './auth/AuthContext';
 import FormularioEquipo from './routes/FormularioEquipo.jsx';
+import NotFound from './components/NotFound.jsx';
+import Empleados from './routes/Empleados.jsx';
+import AgregarEmpleado from './routes/AgregarEmpleado.jsx';
 
 // Definición de rutas
 const router = createBrowserRouter(
   [{
     path: "/",
     element: <App />,
+    errorElement: <NotFound />,
   },
   {
     path: "/login",
@@ -32,7 +36,13 @@ const router = createBrowserRouter(
   },{
     path: "/home",
     element: <Home />
-  }    
+  },{
+    path: "/empleados",
+    element: <Empleados />
+  },{
+    path: "/agregarEmpleado",
+    element: <AgregarEmpleado />
+  } ,
 ]);
 
 ReactDOM.createRoot(document.getElementById('root')).render(
