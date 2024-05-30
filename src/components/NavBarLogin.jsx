@@ -6,7 +6,7 @@ import { Link } from 'react-router-dom'
 
 import { useNavigate } from 'react-router-dom';
 
-const NavBar = () => {
+const NavBarLogin = () => {
     const navigate = useNavigate()
 
     const {
@@ -45,27 +45,11 @@ const NavBar = () => {
             </div>
             <div className="navbar-menu">
                 <div className="navbar-start">
-                    <Link to="/autenticated" className="navbar-item">
+                    <Link to="/" className="navbar-item">
                         Home
-                    </Link>
-                    <Link to="/autenticated/equipos" className="navbar-item">
-                        Equipos
-                    </Link>
-                    <Link to="/autenticated/juegos" className="navbar-item">
-                        Juegos
-                    </Link>
-                    <Link to="/autenticated/empleados" className="navbar-item">
-                        Empleados
                     </Link>
                 </div>
             </div>
-
-            <div id="navbarExampleTransparentExample" className="navbar-menu">
-                <div className="navbar-start">
-                    {/* <Link to="/videojuegos" class="navbar-item has-text-white has-text-link-light  ">Videojuegos </Link> */}
-                    {/* <a class="navbar-item has-text-white has-text-link-light  " href="#"> Videojuegos </a> */}
-
-                </div>
 
                 <div className="navbar-end">
                     <div className="navbar-item">
@@ -85,9 +69,8 @@ const NavBar = () => {
                         </div>
                     </div>
                 </div>
-            </div>
         </nav>
     )
 }
 
-export default NavBar
+export default NavBarLogin

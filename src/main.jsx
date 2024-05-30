@@ -1,14 +1,13 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import { createBrowserRouter, RouterProvider } from 'react-router-dom';
+import { createBrowserRouter } from 'react-router-dom';
 import App from './App';
-import Login from './routes/Login';
-import ListaVideoJuegos from './routes/ListaVideojuegos';
-import Home from './routes/Home.jsx';
+import Login from './pages/Login.jsx';
+import ListaVideoJuegos from './pages/ListaVideojuegos.jsx';
+import Home from './pages/Home.jsx';
 import './root.css'
-import ListaEquipo from './routes/ListaEquipo.jsx'
-import { AuthProvider } from './auth/AuthContext';
-import FormularioEquipo from './routes/FormularioEquipo.jsx';
+import ListaEquipo from './pages/ListaEquipo.jsx'
+import FormularioEquipo from './pages/FormularioEquipo.jsx';
 
 // Definición de rutas
 const router = createBrowserRouter(
@@ -37,9 +36,9 @@ const router = createBrowserRouter(
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
-    <AuthProvider>
+    {/* <AuthProvider>
     <RouterProvider router={router} />
-    </AuthProvider>
-    
+    </AuthProvider> */}
+    <App></App>
   </React.StrictMode>
 );

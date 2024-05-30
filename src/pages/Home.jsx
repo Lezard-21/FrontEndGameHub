@@ -1,6 +1,5 @@
 
 import { useNavigate } from 'react-router-dom';
-import NavBar from '../components/NavBar';
 
 const Home = () => {
     const navigate = useNavigate();
@@ -11,7 +10,6 @@ const Home = () => {
 
     return (
         <>
-            <NavBar />
             <section className="hero is-fullheight is-dark">
                 <div className="hero-body">
                     <div className="container has-text-centered">

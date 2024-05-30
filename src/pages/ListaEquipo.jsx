@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import CardEquipo from '../components/CardEquipo';
-import { API_URL } from '../App';
+import CardEquipo from '../components/CardEquipo.jsx';
+import { API_URL } from '../App.jsx';
 import { useAuth } from '../auth/AuthContext.jsx';
 import AccesoDenegado from '../components/AccesoDenegado.jsx';
 const ListaEquipo = () => {

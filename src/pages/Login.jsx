@@ -40,7 +40,7 @@ const Login = () => {
           rol: data.rol,
           token: data.token
         })
-        navigate('/home'); // Redirige a la vista Home
+        navigate('/autenticated'); // Redirige a la vista Home
       } else {
         console.error('Login failed');
         toast.error('Verifica tus datos e intentalo de nuevo');
@@ -57,7 +57,6 @@ const Login = () => {
       
       <img className='fondo' src='./src/assets/juegos2.jpg' alt="fondo" />
       <section className="hero is-fullheight">
-        <NavBar />
         <Toaster position="top-center" expand={false} richColors  />
         <div className="hero-body">
           <div className="container">
