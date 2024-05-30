@@ -1,6 +1,6 @@
-import React from 'react'
 import NavBar from '../components/NavBar'
 import CardVideojuego from '../components/CardVideojuego'
+import AccesoDenegado from '../components/AccesoDenegado.jsx';
 
 import { useAuth } from '../auth/AuthContext.jsx';
 
@@ -13,12 +13,15 @@ const ListaVideojuegos = () => {
         setIsLoggedIn
     } = useAuth()
 
-
+    if (!isLoggedIn) {
+        
+        return <AccesoDenegado />;
+    }
 
     return (
 
         <div class="hero is-fullwidth">
-            <section class="hero " >
+            <section class="hero" >
                 <NavBar />
             </section>
             <section class="hero " >

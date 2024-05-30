@@ -3,11 +3,12 @@ import ReactDOM from 'react-dom/client';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import App from './App';
 import Login from './routes/Login';
-import ListaVideoJuegos from './routes/ListaVideojuegos.jsx';
+import ListaVideoJuegos from './routes/ListaVideojuegos';
+import Home from './routes/Home.jsx';
 import './root.css'
-
+import ListaEquipo from './routes/ListaEquipo.jsx'
 import { AuthProvider } from './auth/AuthContext';
-import ProtectedRoute from './auth/ProtectedRoute';
+import FormularioEquipo from './routes/FormularioEquipo.jsx';
 
 // Definición de rutas
 const router = createBrowserRouter(
@@ -21,9 +22,18 @@ const router = createBrowserRouter(
   },
   {
     path: "/videojuegos",
-    element: <ProtectedRoute element={<ListaVideoJuegos />} />
-        
-  }])
+    element: <ListaVideoJuegos />
+  },{
+    path: "/equipos",
+    element: <ListaEquipo />
+  },{
+    path: "/equipos/modificar/:id",
+    element: <FormularioEquipo />
+  },{
+    path: "/home",
+    element: <Home />
+  }    
+]);
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>

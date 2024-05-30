@@ -24,6 +24,22 @@ const NavBar = () => {
 
     return (
         <nav class="navbar is-transparent">
+            <div className="navbar-menu">
+                <div className="navbar-start">
+                    <Link to="/" className="navbar-item">
+                        Home
+                    </Link>
+                    <Link to="/equipos" className="navbar-item">
+                        Equipos
+                    </Link>
+                    <Link to="/juegos" className="navbar-item">
+                        Juegos
+                    </Link>
+                    <Link to="/empleados" className="navbar-item">
+                        Empleados
+                    </Link>
+                </div>
+            </div>
             <div class="navbar-brand">
                 <Link to="/">
                     <Logo />
