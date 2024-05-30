@@ -5,7 +5,7 @@ const CardEquipo = ({ equipo }) => {
     const navigate = useNavigate();
 
     const handleModificarClick = () => {
-        navigate(`/equipos/modificar/${equipo.equipoId}`, { state: { equipo } });
+        navigate(`/autenticated/equipos/modificar/${equipo.equipoId}`, { state: { equipo } });
     };
 
     return (

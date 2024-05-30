@@ -6,7 +6,7 @@ import { Link } from 'react-router-dom'
 
 import { useNavigate } from 'react-router-dom';
 
-const NavBar = () => {
+const NavBarLogin = () => {
     const navigate = useNavigate()
 
     const {
@@ -17,11 +17,7 @@ const NavBar = () => {
     } = useAuth()
 
     const cerrarSesion = () => {
-<<<<<<< HEAD
-        setIsLoggedIn(false)
-=======
         isLoggedIn(false)
->>>>>>> 13ea552fc9141290c2756931392d898b46239e24
         setAuthUser(null)
         navigate("/login")
     }
@@ -49,39 +45,19 @@ const NavBar = () => {
             </div>
             <div className="navbar-menu">
                 <div className="navbar-start">
-                    <Link to="/autenticated" className="navbar-item">
+                    <Link to="/" className="navbar-item">
                         Home
-                    </Link>
-                    <Link to="/autenticated/equipos" className="navbar-item">
-                        Equipos
-                    </Link>
-                    <Link to="/autenticated/juegos" className="navbar-item">
-                        Juegos
-                    </Link>
-                    <Link to="/autenticated/empleados" className="navbar-item">
-                        Empleados
                     </Link>
                 </div>
             </div>
-
-            <div id="navbarExampleTransparentExample" className="navbar-menu">
-                <div className="navbar-start">
-                    {/* <Link to="/videojuegos" class="navbar-item has-text-white has-text-link-light  ">Videojuegos </Link> */}
-                    {/* <a class="navbar-item has-text-white has-text-link-light  " href="#"> Videojuegos </a> */}
-
-                </div>
 
                 <div className="navbar-end">
                     <div className="navbar-item">
                         <div className="field is-grouped">
                             {isLoggedIn ? (
-<<<<<<< HEAD
-                                <button type="button" class="button is-white" onClick={cerrarSesion}>Cerrar sesion</button>
-=======
                                 <Link to="/login">
                                     <button type="button" className="button is-white" onClick={cerrarSesion}>Cerrar sesion</button>
                                 </Link>
->>>>>>> 13ea552fc9141290c2756931392d898b46239e24
                             ) : (
                                 <Link to="/login">
                                     <a className="button is-primary has-background-link-light" href="#">
@@ -93,9 +69,8 @@ const NavBar = () => {
                         </div>
                     </div>
                 </div>
-            </div>
         </nav>
     )
 }
 
-export default NavBar
+export default NavBarLogin
