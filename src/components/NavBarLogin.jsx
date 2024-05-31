@@ -19,44 +19,44 @@ const NavBarLogin = () => {
     const burgerHandler = () => {
         const navbarBurger = document.getElementById("navBurger")
         navbarBurger.classList.toggle("is-active")
-        const navbarMenu = document.getElementById("navbarBasicExample")
+        const navbarMenu = document.getElementById("navbarExample")
         navbarMenu.classList.toggle("is-active")
     }
 
     return (
         <nav className="navbar nav_bar is-transparent">
-            
+
             <div className="navbar-brand">
                 <Link to="/">
                     <Logo />
                 </Link>
 
-                <div id='navBurger' className="navbar-burger js-burger" data-target="navbarExampleTransparentExample" onClick={() => burgerHandler()}>
+                <div id='navBurger' className="navbar-burger" data-target="navbarExampleTransparentExample" onClick={() => burgerHandler()}>
                     <span aria-hidden="true"></span>
                     <span aria-hidden="true"></span>
                     <span aria-hidden="true"></span>
                     <span aria-hidden="true"></span>
                 </div>
             </div>
-            <div className="navbar-menu">
+            <div id="navbarExample" className="navbar-menu">
                 <div className="navbar-start">
                     <Link to="/" className="navbar-item">
                         Home
                     </Link>
                 </div>
-            </div>
-
                 <div className="navbar-end">
                     <div className="navbar-item">
                         <div className="field is-grouped">
-                                <Link to="/login">
-                                    <a className="button is-primary has-background-link-light" >
-                                        <span>Iniciar Sesion</span>
-                                    </a>
-                                </Link>
+                            <Link to="/login">
+                                <button className="button is-primary has-background-link-light">
+                                    <span>Iniciar sesión</span>
+                                </button>
+                            </Link>
                         </div>
                     </div>
                 </div>
+
+            </div>
         </nav>
     )
 }

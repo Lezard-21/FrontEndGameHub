@@ -3,13 +3,9 @@ import CardEmpleado from '../components/CardEmpleado'
 import { Link } from 'react-router-dom'
 import { API_URL } from '../App'
 
-import { useAuth } from '../auth/AuthContext.jsx';
+import { getTokenLocalStorage } from '../utils/localStorage.js';
 
 const ListaEmpleados = () => {
-
-    const {
-        authUser
-    } = useAuth()
 
     const [empleados, setEmpleados] = React.useState([])
 
@@ -18,14 +14,14 @@ const ListaEmpleados = () => {
             const respuesta = await fetch(API_URL+"/usuarios", {
                 method: 'GET',
                 headers: {
-                    'Authorization': `Bearer ${authUser.token}`
+                    'Authorization': `Bearer ${getTokenLocalStorage('token')}`
                 }
             })
 
             if (respuesta.ok) {
                 const data = await respuesta.json()
-                setEmpleados(data)
                 console.log(data);
+                setEmpleados(data)
             }else {
                 // Mostrar el estado y texto del estado de la respuesta
                 console.log('Error:', respuesta.status, respuesta.statusText);
@@ -44,18 +40,18 @@ const ListaEmpleados = () => {
     }, [])
 
     return (
-        <div class="hero is-fullwidth">
+        <div className="hero is-fullwidth">
     
-            <section class="has-text-right ">
+            <section className="has-text-right ">
                 <Link to="/autenticated/empleados/agregar">
-                    <a class="button is-success " href="#">
+                    <a className="button is-success " href="#">
                         <span>Agregar empleado</span>
                     </a>
                 </Link>
             </section>
             <div className='contenedor-juegos'>
-                <div class="fixed-grid has-4-cols">
-                    <div class="grid is-gap-5 ispad">
+                <div className="fixed-grid has-4-cols">
+                    <div className="grid is-gap-5 ispad">
                         {
                             empleados.map((empleado) => (
                                  <CardEmpleado nombre={empleado.nombre} username={empleado.username} rol={empleado.rol}  />

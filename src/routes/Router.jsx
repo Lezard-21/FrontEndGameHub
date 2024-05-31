@@ -16,6 +16,7 @@ import ListaEmpleados from '../pages/ListaEmpleados'
 import AgregarEmpleado from '../pages/AgregarEmpleado'
 import EditarEmpleado from '../pages/EditarEmpleado'
 import ProtectedRoute from '../components/ProtectedRoute'
+import ProtectedByRol from '../components/ProtectedByRol'
 // import Login from '../pages/Login'
 
 const Router = () => {
@@ -35,11 +36,9 @@ const Router = () => {
         <Route path='/autenticated/juegos' element={<ListaVideojuegos />} />
         <Route path='/autenticated/juegos/modificar/*' element={<h1>Modificar juegos</h1>} />
         <Route path='/autenticated/juegos/agregar/' element={<h1>Agregar juegos</h1>} />
-        <Route path='/autenticated/empleados' element={<ListaEmpleados />} />
-        <Route path='/autenticated/empleados/agregar' element={<AgregarEmpleado />} />
-        <Route path='/autenticated/empleados/modificar/*' element={<EditarEmpleado />} />
-        <Route path='/autenticated/usuarios/empleados/*' element={<h1>Modificar Empleados</h1>} />
-        <Route path='/autenticated/usuarios/empleados/' element={<h1>Eliminar Empleados</h1>} />
+        <Route path='/autenticated/empleados' element={<ProtectedByRol><ListaEmpleados /></ProtectedByRol>} />
+        <Route path='/autenticated/empleados/agregar' element={<ProtectedByRol><AgregarEmpleado /></ProtectedByRol>} />
+        <Route path='/autenticated/empleados/modificar/*' element={<ProtectedByRol><EditarEmpleado /></ProtectedByRol>} />
         <Route path='*' element={<NotFound/>} />
       </Route>
     </Routes>

@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom';
 
 
 import { API_URL } from '../App'
-import { useAuth } from '../auth/AuthContext.jsx';
+import { getTokenLocalStorage } from '../utils/localStorage.js';
 
 const EditarEmpleado = () => {
 
@@ -14,17 +14,13 @@ const EditarEmpleado = () => {
     
     const navigate = useNavigate()
 
-    const {
-        authUser,
-    } = useAuth() 
-
     const modificarEmpleado = async (event) => {
         event.preventDefault()
         try {
             const respuesta = await fetch(`${API_URL}/usuarios/${username}`, {
                 method: 'PUT',
                 headers: {
-                    'Authorization': `Bearer ${authUser.token}`,
+                    'Authorization': `Bearer ${getTokenLocalStorage('token')}`,
                     'Content-Type': 'application/json',
                 },
                 body: JSON.stringify({
@@ -60,10 +56,10 @@ const EditarEmpleado = () => {
                 <div className="column is-5-tablet is-4-desktop is-3-widescreen">
                     <form onSubmit={modificarEmpleado}>
                         <h2 className="subtitle is-5">Modifica la información de: {username}</h2>
-                        <div class="field">
-                            <label class="label">Nombre</label>
-                            <div class="control">
-                                <input value={nombre} onChange={(e) => setNombre(e.target.value)} class="input" type="text" placeholder="Ingrese el nombre real" required />
+                        <div className="field">
+                            <label className="label">Nombre</label>
+                            <div className="control">
+                                <input value={nombre} onChange={(e) => setNombre(e.target.value)} className="input" type="text" placeholder="Ingrese el nombre real" required />
                             </div>
                         </div>
                         <button type="submit" className="button is-success has-background-link-light">

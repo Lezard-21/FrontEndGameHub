@@ -23,29 +23,27 @@ const NavBar = () => {
         removeTokenLocalStorage('token')
         navigate("/login")
     }
+
     const burgerHandler = () => {
         const navbarBurger = document.getElementById("navBurger")
+        const navbarMenu = document.getElementById("navbarExampleTransparentExample")
         navbarBurger.classList.toggle("is-active")
-        const navbarMenu = document.getElementById("navbarBasicExample")
         navbarMenu.classList.toggle("is-active")
     }
 
     return (
         <nav className="navbar nav_bar is-transparent">
-            
             <div className="navbar-brand">
-                <Link to="/">
+                <Link to="/autenticated">
                     <Logo />
                 </Link>
-
-                <div id='navBurger' className="navbar-burger js-burger" data-target="navbarExampleTransparentExample" onClick={() => burgerHandler()}>
-                    <span aria-hidden="true"></span>
+                <div id='navBurger' className="navbar-burger" data-target="navbarExampleTransparentExample" onClick={burgerHandler}>
                     <span aria-hidden="true"></span>
                     <span aria-hidden="true"></span>
                     <span aria-hidden="true"></span>
                 </div>
             </div>
-            <div className="navbar-menu">
+            <div id="navbarExampleTransparentExample" className="navbar-menu">
                 <div className="navbar-start">
                     <Link to="/autenticated" className="navbar-item">
                         Home
@@ -60,25 +58,14 @@ const NavBar = () => {
                         Empleados
                     </Link>
                 </div>
-            </div>
-
-            <div id="navbarExampleTransparentExample" className="navbar-menu">
-                <div className="navbar-start">
-                    {/* <Link to="/videojuegos" class="navbar-item has-text-white has-text-link-light  ">Videojuegos </Link> */}
-                    {/* <a class="navbar-item has-text-white has-text-link-light  " href="#"> Videojuegos </a> */}
-
-                </div>
-
                 <div className="navbar-end">
                     <div className="navbar-item">
                         <div className="field is-grouped">
-
-                                <Link to="/login">
-                                    <a className="button is-primary has-background-link-light" onClick={cerrarSesion}>
-                                        <span>Cerrar sesión</span>
-                                    </a>
-                                </Link>
-
+                            <Link to="/login">
+                                <button className="button is-primary has-background-link-light" onClick={cerrarSesion}>
+                                    <span>Cerrar sesión</span>
+                                </button>
+                            </Link>
                         </div>
                     </div>
                 </div>
