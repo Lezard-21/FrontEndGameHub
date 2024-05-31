@@ -13,11 +13,6 @@ const ListaVideojuegos = () => {
         setIsLoggedIn
     } = useAuth()
 
-    if (!isLoggedIn) {
-        
-        return <AccesoDenegado />;
-    }
-
     return (
 
         <div className="hero is-fullwidth">

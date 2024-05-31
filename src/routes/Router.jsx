@@ -12,9 +12,13 @@ import ListaEquipo from '../pages/ListaEquipo'
 import ListaVideojuegos from '../pages/ListaVideojuegos'
 import FormularioEquipo from '../pages/FormularioEquipo'
 import NotFound from '../pages/NotFound'
+<<<<<<< HEAD
 import ListaEmpleados from '../pages/ListaEmpleados'
 import AgregarEmpleado from '../pages/AgregarEmpleado'
 import EditarEmpleado from '../pages/EditarEmpleado'
+=======
+import ProtectedRoute from '../components/ProtectedRoute'
+>>>>>>> c9fbec22d16fab0345c712a3d57810eaf48bd122
 // import Login from '../pages/Login'
 
 const Router = () => {
@@ -26,7 +30,7 @@ const Router = () => {
         <Route path='/login' element={<Login />} />
         <Route path='*' element={<NotFound/>} />
       </Route>
-      <Route path='/autenticated' element={<HomeLayout/>}>
+      <Route path='/autenticated' element={<ProtectedRoute><HomeLayout/></ProtectedRoute>}>
         <Route index element={<Home/>} />
         <Route path='/autenticated/equipos' element={<ListaEquipo />} />
         <Route path='/autenticated/equipos/modificar/*' element={<FormularioEquipo />} />
@@ -41,8 +45,6 @@ const Router = () => {
         <Route path='/autenticated/usuarios/empleados/' element={<h1>Eliminar Empleados</h1>} />
         <Route path='*' element={<NotFound/>} />
       </Route>
-      {/* <Route path='/login' element={<Login />} /> */}
-      {/* <Route path='/register' element={<Register />} /> */}
     </Routes>
   )
 }
