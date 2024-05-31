@@ -1,9 +1,7 @@
 import React from 'react'
 import { useLocation } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
-
-
-import { API_URL } from '../App'
+import { URL_API } from '../constants/Constants.js';
 import { getTokenLocalStorage } from '../utils/localStorage.js';
 
 const EditarEmpleado = () => {

@@ -22,7 +22,7 @@ export const post = async (url, data, token = '') => {
 
 export const deleteMethod = async (url, token, id) => {
   try {
-    const response = await fetch(`${url}?id=${id}`, {
+    const response = await fetch(`${url}/${id}`, {
       method: 'DELETE',
       headers: {
         'Content-Type': 'application/json',

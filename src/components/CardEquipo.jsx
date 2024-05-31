@@ -3,7 +3,7 @@ import { URL_API } from '../constants/Constants';
 import { getTokenLocalStorage } from '../utils/localStorage';
 import { deleteMethod } from '../http/index';
 
-const CardEquipo = ({ equipo, buscarEquipos }) => {
+const CardEquipo = ({ equipo }) => {
     const disponibilidadColor = equipo.disponibilidad.nombre_disponibilidad === 'Disponible' ? 'green' : 'red';
     const navigate = useNavigate();
 
@@ -12,8 +12,12 @@ const CardEquipo = ({ equipo, buscarEquipos }) => {
     };
 
     const handleEliminar = () => {
-        deleteMethod(`${URL_API}/equipos`,getTokenLocalStorage('token'),equipo.equipoId);
-        buscarEquipos();
+        
+        if (confirm("¿Quieres eliminar este registro?") == true) {
+            deleteMethod(`${URL_API}/equipos`,getTokenLocalStorage('token'),equipo.equipoId);
+            navigate(`/autenticated`)
+        }
+        
     }
 
     return (

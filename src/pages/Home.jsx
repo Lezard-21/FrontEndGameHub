@@ -18,7 +18,7 @@ const Home = () => {
                         <div className="buttons are-large">
                             <button
                                 className="button is-primary is-fullwidth"
-                                onClick={() => handleNavigation('autenticated/equipos')}
+                                onClick={() => handleNavigation('/autenticated/equipos')}
                                 style={{ marginBottom: '20px' }}
                             >
                                 Equipos
