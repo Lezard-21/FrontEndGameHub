@@ -10,8 +10,10 @@ import CleanLayout from '../layouts/CleanLayout'
 import Home from '../pages/Home'
 import ListaEquipo from '../pages/ListaEquipo'
 import ListaVideojuegos from '../pages/ListaVideojuegos'
-import FormularioEquipo from '../pages/FormularioEquipo'
+import ModificarEquipo from '../pages/ModificarEquipo'
+import AgregarEquipo from '../pages/AgregarEquipo'
 import NotFound from '../pages/NotFound'
+import ProtectedRoute from '../components/ProtectedRoute'
 // import Login from '../pages/Login'
 
 const Router = () => {
@@ -23,11 +25,11 @@ const Router = () => {
         <Route path='/login' element={<Login />} />
         <Route path='*' element={<NotFound/>} />
       </Route>
-      <Route path='/autenticated' element={<HomeLayout/>}>
-        <Route index element={<Home/>} />
+      <Route path='/autenticated' element={<ProtectedRoute><HomeLayout/></ProtectedRoute>}>
+        <Route index element={<ProtectedRoute><Home/></ProtectedRoute>} />
         <Route path='/autenticated/equipos' element={<ListaEquipo />} />
-        <Route path='/autenticated/equipos/modificar/*' element={<FormularioEquipo />} />
-        <Route path='/autenticated/equipos/agregar/' element={<h1>Agregar equipos</h1>} />
+        <Route path='/autenticated/equipos/modificar/*' element={<ModificarEquipo />} />
+        <Route path='/autenticated/equipos/agregar' element={<AgregarEquipo />} />
         <Route path='/autenticated/juegos' element={<ListaVideojuegos />} />
         <Route path='/autenticated/juegos/modificar/*' element={<h1>Modificar juegos</h1>} />
         <Route path='/autenticated/juegos/agregar/' element={<h1>Agregar juegos</h1>} />

@@ -67,10 +67,11 @@ const Login = () => {
                   <h2 className="title is-2"><Logo /></h2>
                   <div className="field">
                     <div className="control has-icons-left has-icons-right">
+                      <label className="label">Usuario</label>
                       <input
                         type="text"
                         id="username"
-                        placeholder="Usuario"
+                        placeholder="gamehub12"
                         className="input"
                         value={username}
                         onChange={(e) => setUsername(e.target.value)}
@@ -87,6 +88,7 @@ const Login = () => {
                   
                   <div className="field">
                     <div className="control has-icons-left">
+                      <label className="label">Contraseña</label>
                       <input
                         type="password"
                         id="password"

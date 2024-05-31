@@ -20,14 +20,15 @@ export const post = async (url, data, token = '') => {
   }
 }
 
-export const deleteMethod = async (url, token) => {
+export const deleteMethod = async (url, token, id) => {
   try {
-    const response = await fetch(`${url}`, {
+    const response = await fetch(`${url}/${id}`, {
       method: 'DELETE',
       headers: {
-        'Authorization': `Bearer ${token}`
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${token}`
       }
-    });
+    })
 
     const jsonResponse = await response.json()
 

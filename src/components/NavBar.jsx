@@ -5,6 +5,7 @@ import { useAuth } from '../auth/AuthContext.jsx';
 import { Link } from 'react-router-dom'
 
 import { useNavigate } from 'react-router-dom';
+import { removeTokenLocalStorage } from '../utils/localStorage.js';
 
 const NavBar = () => {
     const navigate = useNavigate()
@@ -17,8 +18,9 @@ const NavBar = () => {
     } = useAuth()
 
     const cerrarSesion = () => {
-        isLoggedIn(false)
+        setIsLoggedIn(false)
         setAuthUser(null)
+        removeTokenLocalStorage('token')
         navigate("/login")
     }
     const burgerHandler = () => {
@@ -70,17 +72,12 @@ const NavBar = () => {
                 <div className="navbar-end">
                     <div className="navbar-item">
                         <div className="field is-grouped">
-                            {isLoggedIn ? (
+
                                 <Link to="/login">
-                                    <button type="button" className="button is-white" onClick={cerrarSesion}>Cerrar sesion</button>
-                                </Link>
-                            ) : (
-                                <Link to="/login">
-                                    <a className="button is-primary has-background-link-light" href="#">
-                                        <span>Iniciar Sesion</span>
+                                    <a className="button is-primary has-background-link-light" onClick={cerrarSesion}>
+                                        <span>Cerrar sesión</span>
                                     </a>
                                 </Link>
-                            )}
 
                         </div>
                     </div>

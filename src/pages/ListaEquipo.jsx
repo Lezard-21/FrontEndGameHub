@@ -2,27 +2,23 @@ import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import CardEquipo from '../components/CardEquipo.jsx';
 import { API_URL } from '../App.jsx';
-import { useAuth } from '../auth/AuthContext.jsx';
-import AccesoDenegado from '../components/AccesoDenegado.jsx';
+import { getTokenLocalStorage } from '../utils/localStorage.js';
 const ListaEquipo = () => {
     
     const [equipos, setEquipos] = useState([]);
     const navigate = useNavigate();
     
-    const { authUser, isLoggedIn } = useAuth();
+    const handleCrearClick = () => {
+        navigate('/autenticated/equipos/agregar');
+    };
 
     const buscarEquipos = async (e) => {
         if (e) e.preventDefault();
 
-        if (!authUser || !authUser.token) {
-            console.error('Token no válido o no presente');
-            return;
-        }
-
         try {
             const response = await fetch(`${API_URL}/equipos`, {
                 headers: {
-                    'Authorization': `Bearer ${authUser.token}`
+                    'Authorization': `Bearer ${getTokenLocalStorage('token')}`
                 }
             });
 
@@ -45,23 +41,24 @@ const ListaEquipo = () => {
         buscarEquipos();
     }, []);
 
-    if (!isLoggedIn) {
-        return <AccesoDenegado />;
-    }
-
     return (
         <>
-            <div className="hero is-fullwidth">
+            <div className="canva" >
+            <img className='fondo' src='./src/assets/juegos.jpg' alt="fondo" />
+            <div className="hero is-fullheight" >
                 <div className='contenedor-juegos'>
-                    <div className="fixed-grid has-4-cols">
-                        <p className="title is-2">Equipos</p>
+                    <p className="title is-2">Equipos</p>
+                    <button className='button is-info is-outlined is-medium is-responsive is-fullwidth' onClick={handleCrearClick}>Agregar</button>
+                    <br />
+                    <div className="fixed-grid has-3-cols">
                         <div className="grid is-gap-5 ispad">
                             {equipos.map((equipo) => (
-                                <CardEquipo key={equipo.equipoId} equipo={equipo} />
+                                <CardEquipo key={equipo.equipoId} equipo={equipo} buscarEquipos={buscarEquipos}/>
                             ))}
                         </div>
                     </div>
                 </div>
+            </div>
             </div>
         </>
     );
