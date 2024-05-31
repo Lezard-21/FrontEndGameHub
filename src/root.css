@@ -42,3 +42,8 @@
     position: sticky;
     top: 0;
 }
+
+.loading {
+    position: absolute;
+    top:50%;
+}

@@ -11,7 +11,7 @@ const CardEquipo = ({ equipo }) => {
         navigate(`/autenticated/equipos/modificar/${equipo.equipoId}`, { state: { equipo } });
     };
     const handleEliminar = () => {
-        deleteMethod(`${URL_API}/equipos`,getTokenLocalStorage(),equipo.equipoId)
+        deleteMethod(`${URL_API}/equipos`,getTokenLocalStorage('token'),equipo.equipoId)
     }
 
     return (

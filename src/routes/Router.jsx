@@ -12,6 +12,7 @@ import ListaEquipo from '../pages/ListaEquipo'
 import ListaVideojuegos from '../pages/ListaVideojuegos'
 import FormularioEquipo from '../pages/FormularioEquipo'
 import NotFound from '../pages/NotFound'
+import ProtectedRoute from '../components/ProtectedRoute'
 // import Login from '../pages/Login'
 
 const Router = () => {
@@ -23,8 +24,8 @@ const Router = () => {
         <Route path='/login' element={<Login />} />
         <Route path='*' element={<NotFound/>} />
       </Route>
-      <Route path='/autenticated' element={<HomeLayout/>}>
-        <Route index element={<Home/>} />
+      <Route path='/autenticated' element={<ProtectedRoute><HomeLayout/></ProtectedRoute>}>
+        <Route index element={<ProtectedRoute><Home/></ProtectedRoute>} />
         <Route path='/autenticated/equipos' element={<ListaEquipo />} />
         <Route path='/autenticated/equipos/modificar/*' element={<FormularioEquipo />} />
         <Route path='/autenticated/equipos/agregar/' element={<h1>Agregar equipos</h1>} />

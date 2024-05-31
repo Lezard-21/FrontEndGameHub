@@ -16,11 +16,6 @@ const NavBarLogin = () => {
         setIsLoggedIn
     } = useAuth()
 
-    const cerrarSesion = () => {
-        isLoggedIn(false)
-        setAuthUser(null)
-        navigate("/login")
-    }
     const burgerHandler = () => {
         const navbarBurger = document.getElementById("navBurger")
         navbarBurger.classList.toggle("is-active")
@@ -54,18 +49,11 @@ const NavBarLogin = () => {
                 <div className="navbar-end">
                     <div className="navbar-item">
                         <div className="field is-grouped">
-                            {isLoggedIn ? (
                                 <Link to="/login">
-                                    <button type="button" className="button is-white" onClick={cerrarSesion}>Cerrar sesion</button>
-                                </Link>
-                            ) : (
-                                <Link to="/login">
-                                    <a className="button is-primary has-background-link-light" href="#">
+                                    <a className="button is-primary has-background-link-light" >
                                         <span>Iniciar Sesion</span>
                                     </a>
                                 </Link>
-                            )}
-
                         </div>
                     </div>
                 </div>
