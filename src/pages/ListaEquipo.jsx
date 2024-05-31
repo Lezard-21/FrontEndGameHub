@@ -60,7 +60,7 @@ const ListaEquipo = () => {
                 <div className="hero is-fullheight" >
                     <div className='contenedor-juegos'>
                         <p className="title is-2">Equipos</p>
-                        <button className='button is-info is-outlined is-fullwidth' onClick={handleCrearClick}>Agregar</button>
+                        <button className='button is-info is-medium is-outlined sticyButton' onClick={handleCrearClick}>Agregar</button>
                         <br/>
                         <div className='container searchBarContainer'>
                             <input className='input is-rounded is-medium is-left' placeholder='Buscar por equipo ó disponibilidad' value={filterKeyword} onChange={(e) => setFilterKeyword(e.target.value)} />

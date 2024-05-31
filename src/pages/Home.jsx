@@ -25,7 +25,7 @@ const Home = () => {
                             </button>
                             <button
                                 className="button is-info is-fullwidth"
-                                onClick={() => handleNavigation('/juegos')}
+                                onClick={() => handleNavigation('/autenticated/juegos')}
                                 style={{ marginBottom: '20px' }}
                             >
                                 Juegos

@@ -18,13 +18,14 @@ import AgregarEmpleado from '../pages/AgregarEmpleado'
 import EditarEmpleado from '../pages/EditarEmpleado'
 import ProtectedRoute from '../components/ProtectedRoute'
 import ProtectedByRol from '../components/ProtectedByRol'
+import ProtectedByToken from '../components/ProtectedByToken'
 // import Login from '../pages/Login'
 
 const Router = () => {
   return (
     <Routes>
       {/* <Route path='/' element={<ProtectedRoute><HomeLayout /></ProtectedRoute>}> */}
-      <Route path='/' element={<CleanLayout />}>
+      <Route path='/' element={<ProtectedByToken><CleanLayout /></ProtectedByToken>}>
         <Route index element={<Principal />} />
         <Route path='/login' element={<Login />} />
         <Route path='*' element={<NotFound/>} />

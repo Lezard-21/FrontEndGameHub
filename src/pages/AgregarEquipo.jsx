@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { URL_API } from '../constants/Constants.js';
 import { getTokenLocalStorage } from '../utils/localStorage.js';
+import { Link } from 'react-router-dom';
 
 const AgregarEquipo = () => {
     
@@ -120,7 +121,7 @@ const AgregarEquipo = () => {
                             <label className="label">Disponibilidad</label>
                             <div className="control">
                                  <div className="select">
-                                    <div class="is-facused">
+                                    <div className="is-facused">
                                         <select value={selectedOption} onChange={handleSelectChange}>
                                             <option value="">Seleccionar</option>
                                             {disponibilidades.map((disponibilidad) => (
@@ -132,15 +133,17 @@ const AgregarEquipo = () => {
                             </div>
                         </div>
 
-                        <div class="container">
+                        <div className="container">
                             <br />
-                            <div class="field is-grouped">
-                                <p class="control">
-                                    <button class="button is-link is-outlined is-medium is-fullwidth" onClick={registrarEquipo}>Guardar</button>
+                            <div className="field is-grouped">
+                                <p className="control">
+                                    <button className="button is-link is-outlined is-medium is-fullwidth" onClick={registrarEquipo}>Guardar</button>
                                 </p>
-                                <p class="control">
-                                    <button class="button is-danger is-outlined is-medium is-fullwidth">Cancelar</button>
+                                <Link to='/autenticated/equipos'>
+                                <p className="control">
+                                    <button className="button is-danger is-outlined is-medium is-fullwidth">Cancelar</button>
                                 </p>
+                                </Link>
                             </div>
                         </div>
                         
