@@ -6,6 +6,7 @@ import { Link } from 'react-router-dom'
 
 import { useNavigate } from 'react-router-dom';
 import { removeTokenLocalStorage } from '../utils/localStorage.js';
+import { removeUserCokie } from '../utils/UserCokie.js';
 
 const NavBar = () => {
     const navigate = useNavigate()
@@ -21,6 +22,7 @@ const NavBar = () => {
         setIsLoggedIn(false)
         setAuthUser(null)
         removeTokenLocalStorage('token')
+        removeUserCokie('rol')
         navigate("/login")
     }
 

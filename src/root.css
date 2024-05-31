@@ -54,3 +54,9 @@
     width: 30%;
     margin-bottom: 2rem;
 }
+
+.sticyButton{
+    position: sticky !important;
+    bottom: 3% !important;
+    left: 5% !important;
+}
