@@ -12,14 +12,14 @@ const FormularioJuego2 = () => {
     const [id, setJuegoId] = useState(juegoId);
     const [nombreJuego, setNombreJuego] = useState('');
     const [plataforma, setPlataforma] = useState('');
-    const [estatusId, setEstatusId] = useState(1);
+    const [estatusId, setEstatusId] = useState(0); // Valor por defecto a 0 para "Seleccionar Estatus"
     const [urlImagen, setUrlImagen] = useState('');
     const token = getTokenLocalStorage('token');
     const navigate = useNavigate();
     console.log('Token recibido:', token);
 
     useEffect(() => {
-        console.log('Valor de juegoId:', juegoId); // Agregar esta línea para imprimir el valor de juegoId
+        console.log('Valor de juegoId:', juegoId);
         if (id && token) {
             const fetchJuego = async () => {
                 try {
@@ -52,6 +52,11 @@ const FormularioJuego2 = () => {
         if (!token) {
             console.error('Token no válido o no presente');
             return <AccesoDenegado />;
+        }
+
+        if (estatusId === 0) {
+            alert('Por favor, selecciona un estatus válido.');
+            return;
         }
 
         try {
@@ -87,6 +92,7 @@ const FormularioJuego2 = () => {
                             type="text"
                             value={nombreJuego}
                             onChange={(e) => setNombreJuego(e.target.value)}
+                            placeholder="Ingrese el nombre del juego"
                             required
                         />
                     </div>
@@ -99,6 +105,7 @@ const FormularioJuego2 = () => {
                             type="text"
                             value={plataforma}
                             onChange={(e) => setPlataforma(e.target.value)}
+                            placeholder="Ingrese la plataforma del juego"
                             required
                         />
                     </div>
@@ -107,7 +114,8 @@ const FormularioJuego2 = () => {
                     <label className="label">Disponibilidad:</label>
                     <div className="control">
                         <div className="select">
-                            <select value={estatusId} onChange={(e) => setEstatusId(e.target.value)} required>
+                            <select value={estatusId} onChange={(e) => setEstatusId(Number(e.target.value))} required>
+                                <option value={0}>Seleccionar Estatus</option>
                                 <option value={1}>Activo</option>
                                 <option value={2}>No Disponible</option>
                             </select>
@@ -122,6 +130,7 @@ const FormularioJuego2 = () => {
                             type="text"
                             value={urlImagen}
                             onChange={(e) => setUrlImagen(e.target.value)}
+                            placeholder="Ingrese la URL de la imagen"
                             required
                         />
                     </div>
@@ -137,4 +146,3 @@ const FormularioJuego2 = () => {
 };
 
 export default FormularioJuego2;
-

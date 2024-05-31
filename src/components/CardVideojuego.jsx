@@ -12,15 +12,10 @@ const CardVideojuego = ({ videojuego }) => {
         navigate(`/autenticated/juegos/modificar/${videojuego.juegoId}`, { state: { juegoId: videojuego.juegoId } });
     };
     
-    
-    const handleEliminar = async () => {
-            const response = await fetch(`${URL_API}/autenticated/juegos/${videojuego.juegoId}`, {
-                method: 'DELETE',
-                headers: {
-                    'Authorization': `Bearer ${getTokenLocalStorage()}`, // Asegúrate de obtener el token correctamente
-                }
-            });
-        };
+    const handleEliminar = () => {
+        deleteMethod(`${URL_API}/juegos`,getTokenLocalStorage('token'),videojuego.juegoId);
+        navigate("/autenticated"); // Corregido el path de la redirección
+    }
 
     return (
         <div className="cell is-one-fifth">
@@ -36,7 +31,6 @@ const CardVideojuego = ({ videojuego }) => {
                 <div className="card-content">
                     <div className="media">
                         <div className="media-content">
-                            <p className="title is-5">Juego: {videojuego.juegoId}</p>
                             <p className="title is-5">{videojuego.nombre_juego}</p>
                             <p className="subtitle is-6">{videojuego.plataforma}</p>
                             <p className="subtitle is-4" style={{ color }}>{videojuego.estatus.nombre_estatus}</p>

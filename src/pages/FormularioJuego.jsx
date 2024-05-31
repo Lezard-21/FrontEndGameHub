@@ -7,7 +7,7 @@ import { useNavigate } from 'react-router-dom';
 const FormularioJuego = ({ juegoId }) => {
     const [nombreJuego, setNombreJuego] = useState('');
     const [plataforma, setPlataforma] = useState('');
-    const [estatusId, setEstatusId] = useState(1); // Cambiado de nombre_estatus a estatusId
+    const [estatusId, setEstatusId] = useState(0); // Valor por defecto a 0 para "Seleccionar Estatus"
     const [urlImagen, setUrlImagen] = useState('');
     const token = getTokenLocalStorage('token');
     const navigate = useNavigate();
@@ -26,7 +26,7 @@ const FormularioJuego = ({ juegoId }) => {
                         const data = await response.json();
                         setNombreJuego(data.nombre_juego);
                         setPlataforma(data.plataforma);
-                        setEstatusId(data.estatusId); // Cambiado de nombre_estatus a estatusId
+                        setEstatusId(data.estatusId);
                         setUrlImagen(data.url_imagen);
                     } else {
                         console.error('Error al obtener los datos del juego');
@@ -47,6 +47,11 @@ const FormularioJuego = ({ juegoId }) => {
             return <AccesoDenegado />;
         }
 
+        if (estatusId === 0) {
+            alert('Por favor, selecciona un estatus válido.');
+            return;
+        }
+
         try {
             const response = await fetch(`${API_URL}/juegos`, {
                 method: 'POST',
@@ -54,12 +59,12 @@ const FormularioJuego = ({ juegoId }) => {
                     'Authorization': `Bearer ${token}`,
                     'Content-Type': 'application/json',
                 },
-                body: JSON.stringify({ nombre_juego: nombreJuego, plataforma, estatusId, url_imagen: urlImagen }), // Cambiado de nombre_estatus a estatusId
+                body: JSON.stringify({ nombre_juego: nombreJuego, plataforma, estatusId, url_imagen: urlImagen }),
             });
 
             if (response.ok) {
                 console.log('Juego registrado exitosamente');
-                navigate("/autenticated/juegos"); // Corregido el path de la redirección
+                navigate("/autenticated/juegos");
             } else {
                 console.error('Error al guardar el juego');
             }
@@ -80,6 +85,7 @@ const FormularioJuego = ({ juegoId }) => {
                             type="text"
                             value={nombreJuego}
                             onChange={(e) => setNombreJuego(e.target.value)}
+                            placeholder="Ejem: Gears of Wars"
                             required
                         />
                     </div>
@@ -92,6 +98,7 @@ const FormularioJuego = ({ juegoId }) => {
                             type="text"
                             value={plataforma}
                             onChange={(e) => setPlataforma(e.target.value)}
+                            placeholder="Ejem: Xbox"
                             required
                         />
                     </div>
@@ -100,9 +107,10 @@ const FormularioJuego = ({ juegoId }) => {
                     <label className="label">Disponibilidad:</label>
                     <div className="control">
                         <div className="select">
-                            <select value={estatusId} onChange={(e) => setEstatusId(e.target.value)} required>
-                                <option value={1}>Activo</option> {/* Cambiado de Disponible a Activo */}
-                                <option value={2}>No Disponible</option> {/* Cambiado de No Disponible a No Disponible */}
+                            <select value={estatusId} onChange={(e) => setEstatusId(Number(e.target.value))} required>
+                                <option value={0}>Seleccionar Estatus</option>
+                                <option value={1}>Activo</option>
+                                <option value={2}>No Disponible</option>
                             </select>
                         </div>
                     </div>
@@ -115,6 +123,7 @@ const FormularioJuego = ({ juegoId }) => {
                             type="text"
                             value={urlImagen}
                             onChange={(e) => setUrlImagen(e.target.value)}
+                            placeholder="Ejem: http://image.jpg"
                             required
                         />
                     </div>

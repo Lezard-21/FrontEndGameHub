@@ -3,44 +3,43 @@ import { useNavigate } from 'react-router-dom';
 import NavBar from '../components/NavBar.jsx';
 import CardVideojuego from '../components/CardVideojuego.jsx';
 import AccesoDenegado from '../components/AccesoDenegado.jsx';
-import axios from 'axios'; // Importa axios para realizar solicitudes HTTP
 import { useAuth } from '../auth/AuthContext.jsx';
 import { URL_API } from '../constants/Constants.js';
 import { getTokenLocalStorage } from '../utils/localStorage.js';
 
 const ListaVideojuegos = () => {
-    const { isLoggedIn } = useAuth();
     const [videojuegos, setVideojuegos] = useState([]); // Estado para almacenar los videojuegos
     const navigate = useNavigate(); // Hook de navegación
 
-    useEffect(() => {
-        // Función para obtener la lista de videojuegos
-        const fetchVideojuegos = async () => {
-            try {
-                const token = getTokenLocalStorage('token');
-                const response = await axios.get(URL_API + '/juegos', {
-                    headers: {
-                        'Authorization': `Bearer ${token}`
-                    }
-                });
-                console.log(response); // Agrega esta línea para ver la respuesta completa en la consola
-                if (response.status === 200) {
-                    setVideojuegos(response.data);
-                } else {
-                    console.error('Error al obtener los juegos');
-                    if (response.status === 401) {
-                        navigate('/login');
-                    }
+    const fetchVideojuegos = async () => {
+        try {
+            const response = await fetch(URL_API + "/juegos", {
+                method: 'GET',
+                headers: {
+                    'Authorization': `Bearer ${getTokenLocalStorage('token')}`
                 }
-            } catch (error) {
-                console.error('Error al obtener los videojuegos:', error);
-            }
-        };
+            });
 
-        if (isLoggedIn) {
-            fetchVideojuegos(); // Llama a la función para obtener los videojuegos si el usuario está autenticado
+            if (response.ok) {
+                const data = await response.json();
+                console.log(data);
+                setVideojuegos(data);
+            } else {
+                console.error('Error:', response.status, response.statusText);
+                const errorData = await response.json();
+                console.error('Respuesta del servidor:', errorData);
+                if (response.status === 401) {
+                    navigate('/login');
+                }
+            }
+        } catch (error) {
+            console.error('Error al obtener los videojuegos:', error);
         }
-    }, [isLoggedIn]);
+    };
+
+    useEffect(() => {
+        fetchVideojuegos();
+    }, []);
 
     const handleNuevoJuegoClick = () => {
         navigate(`/autenticated/juegos/nuevo`);
@@ -70,4 +69,3 @@ const ListaVideojuegos = () => {
 };
 
 export default ListaVideojuegos;
-
