@@ -12,13 +12,10 @@ import ListaEquipo from '../pages/ListaEquipo'
 import ListaVideojuegos from '../pages/ListaVideojuegos'
 import FormularioEquipo from '../pages/FormularioEquipo'
 import NotFound from '../pages/NotFound'
-<<<<<<< HEAD
 import ListaEmpleados from '../pages/ListaEmpleados'
 import AgregarEmpleado from '../pages/AgregarEmpleado'
 import EditarEmpleado from '../pages/EditarEmpleado'
-=======
 import ProtectedRoute from '../components/ProtectedRoute'
->>>>>>> c9fbec22d16fab0345c712a3d57810eaf48bd122
 // import Login from '../pages/Login'
 
 const Router = () => {
