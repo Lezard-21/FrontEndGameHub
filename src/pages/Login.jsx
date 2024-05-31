@@ -5,6 +5,7 @@ import { Toaster, toast } from 'sonner'
 import { API_URL } from '../App.jsx';
 import  {useAuth}  from '../auth/AuthContext.jsx';
 import { setTokenLocalStorage } from '../utils/localStorage.js';
+import { setUserCokie } from '../utils/UserCokie.js';
 
 
 const Login = () => {
@@ -36,11 +37,13 @@ const Login = () => {
         console.log('Login successful', data);
         setTokenLocalStorage('token', data.token)
         setIsLoggedIn(true)
-        setAuthUser({
+        const user = {
           username: data.userName,
           rol: data.rol,
           token: data.token
-        })
+        }
+        setUserCokie('rol',user.rol)
+        setAuthUser(user)
         navigate('/autenticated'); // Redirige a la vista Home
       } else {
         console.error('Login failed');

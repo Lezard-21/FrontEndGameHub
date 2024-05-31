@@ -1,12 +1,12 @@
-export const setTokenLocalStorage = (key, value) => {
+export const setUserCokie = (key, value) => {
   setCookie(key, value, { 'Secure': true });
 }
 
-export const getTokenLocalStorage = (key) => {
+export const getUserCokie = (key) => {
   return getCookie(key);
 }
 
-export const removeTokenLocalStorage = (key) => {
+export const removeUserCokie = (key) => {
   deleteCookie(key);
 }
 

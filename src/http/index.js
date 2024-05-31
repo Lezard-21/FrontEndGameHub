@@ -22,20 +22,21 @@ export const post = async (url, data, token = '') => {
 
 export const deleteMethod = async (url, token, id) => {
   try {
-    const response = await fetch(`${url}/${id}`, {
+    const response = await fetch(`${url}?id=${id}`, {
       method: 'DELETE',
       headers: {
         'Content-Type': 'application/json',
         Authorization: `Bearer ${token}`
       }
-    })
+    });
 
-    const jsonResponse = await response.json()
+    const jsonResponse = await response.json();
 
-    if (!response.ok) return { error: true, ...jsonResponse }
+    if (!response.ok) return { error: true, ...jsonResponse };
 
-    return { error: false, ...jsonResponse }
+    return { error: false, ...jsonResponse };
   } catch (error) {
-    return { error: true, message: 'Ha ocurrido un error al intentar conectarse con el servidor, intentalo más tarde.' }
+    return { error: true, message: 'Ha ocurrido un error al intentar conectarse con el servidor, intentalo más tarde.' };
   }
 }
+

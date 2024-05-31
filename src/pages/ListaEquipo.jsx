@@ -4,8 +4,10 @@ import CardEquipo from '../components/CardEquipo.jsx';
 import { API_URL } from '../App.jsx';
 import { getTokenLocalStorage } from '../utils/localStorage.js';
 const ListaEquipo = () => {
-    
+
     const [equipos, setEquipos] = useState([]);
+    const [loading, setLoading] = useState(false)
+    const [filterKeyword, setFilterKeyword] = useState('')
     const navigate = useNavigate();
     
     const handleCrearClick = () => {
@@ -16,11 +18,13 @@ const ListaEquipo = () => {
         if (e) e.preventDefault();
 
         try {
+            setLoading(true)
             const response = await fetch(`${API_URL}/equipos`, {
                 headers: {
                     'Authorization': `Bearer ${getTokenLocalStorage('token')}`
                 }
             });
+            setLoading(false)
 
             if (response.ok) {
                 const data = await response.json();
@@ -36,31 +40,52 @@ const ListaEquipo = () => {
             console.error('Error occurred:', error);
         }
     };
+    const filterEquipos = () => {
+        if (!filterKeyword) {
+            return equipos
+        }
+        return equipos.filter(item =>
+            item.nombre.toLowerCase().includes(filterKeyword.toLowerCase()) ||
+            item.disponibilidad.nombre_disponibilidad.toLowerCase().includes(filterKeyword.toLowerCase()))
+    }
 
     useEffect(() => {
         buscarEquipos();
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
     return (
-        <>
             <div className="canva" >
             <img className='fondo' src='./src/assets/juegos.jpg' alt="fondo" />
-            <div className="hero is-fullheight" >
-                <div className='contenedor-juegos'>
-                    <p className="title is-2">Equipos</p>
-                    <button className='button is-info is-outlined is-medium is-responsive is-fullwidth' onClick={handleCrearClick}>Agregar</button>
-                    <br />
-                    <div className="fixed-grid has-3-cols">
+                <div className="hero is-fullheight" >
+                    <div className='contenedor-juegos'>
+                        <p className="title is-2">Equipos</p>
+                        <button className='button is-info is-outlined is-fullwidth' onClick={handleCrearClick}>Agregar</button>
+                        <br/>
+                        <div className='container searchBarContainer'>
+                            <input className='input is-rounded is-medium is-left' placeholder='Buscar por equipo ó disponibilidad' value={filterKeyword} onChange={(e) => setFilterKeyword(e.target.value)} />
+                        </div>
+                        <br />
                         <div className="grid is-gap-5 ispad">
-                            {equipos.map((equipo) => (
-                                <CardEquipo key={equipo.equipoId} equipo={equipo} buscarEquipos={buscarEquipos}/>
-                            ))}
+                            {filterEquipos().length > 0
+                                ? (
+                                    filterEquipos().map((equipo) => (
+                                        <CardEquipo key={equipo.equipoId} equipo={equipo} />
+                                    ))
+                                ) : (
+                                    loading
+                                        ? (
+                                            <h1>Parece que aún no hay equipos registrados</h1>
+                                        ) : (
+                                            <p>Error al cargar los equipos</p>
+                                        )
+                                )
+                            }
                         </div>
                     </div>
                 </div>
             </div>
-            </div>
-        </>
+        
     );
 };
 

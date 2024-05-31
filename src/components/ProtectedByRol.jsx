@@ -1,29 +1,30 @@
 import { useState, useEffect} from 'react'
 import PropTypes from 'prop-types'
 
-import { getTokenLocalStorage } from '../utils/localStorage'
 import AccesoDenegado from './AccesoDenegado'
+import { getUserCokie } from '../utils/UserCokie'
 
-const ProtectedRoute = ({ children }) => {
+const ProtectedByRol = ({ children }) => {
     const [loading, setLoading] = useState(true)
 
-    const token = getTokenLocalStorage('token')
+    const rol = getUserCokie('rol')
 
     useEffect(() => {
         const checkToken = async () => {
-            console.log(token)
-            if (!token) return (<AccesoDenegado/>)
+            console.log(rol)
+            if (!rol || rol !== "Administrador") return (<AccesoDenegado/>)
             setLoading(false)
         }
         checkToken()
         // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [token])
+    }, [rol])
 
     return loading ? (<AccesoDenegado />) : (children)
 }
 
-ProtectedRoute.propTypes = {
+ProtectedByRol.propTypes = {
     children: PropTypes.node
 }
 
-export default ProtectedRoute
+export default ProtectedByRol
+
