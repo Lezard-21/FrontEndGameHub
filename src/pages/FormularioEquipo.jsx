@@ -49,10 +49,21 @@ const FormularioEquipo = () => {
     }
 
     return (
-        <div>
-            <h1>Modificar Equipo {equipo.nombre}</h1>
-            {/* Formulario con la información del equipo */}
-        </div>
+        <>
+            <div className="hero is-fullwidth">
+                <div className='contenedor-juegos'>
+                    <div className="fixed-grid has-4-cols">
+                        <p className="title is-2">Formulario Equipo</p>
+                        <div className='field'>
+                            <label className="label">Nombre</label>
+                            <div className='control'>
+                                <input className="input is-focused" type="text" value={equipo.nombre} onChange={(e) => setEquipo({ ...equipo, nombre: e.target.value })} />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </>
     );
 }
 

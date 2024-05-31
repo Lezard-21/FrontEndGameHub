@@ -1,6 +1,5 @@
 import  { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import NavBar from '../components/NavBar.jsx';
 import Logo from '../components/Logo.jsx';
 import { Toaster, toast } from 'sonner'
 import { API_URL } from '../App.jsx';

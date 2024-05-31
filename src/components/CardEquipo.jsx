@@ -1,6 +1,6 @@
 import { useNavigate } from 'react-router-dom';
-import { deleteMethod} from '../http';
 import { URL_API } from '../constants/Constants';
+import { API_URL } from '../App.jsx';
 import { getTokenLocalStorage } from '../utils/localStorage';
 
 const CardEquipo = ({ equipo }) => {
@@ -10,8 +10,29 @@ const CardEquipo = ({ equipo }) => {
     const handleModificarClick = () => {
         navigate(`/autenticated/equipos/modificar/${equipo.equipoId}`, { state: { equipo } });
     };
-    const handleEliminar = () => {
-        deleteMethod(`${URL_API}/equipos`,getTokenLocalStorage(),equipo.equipoId)
+    const handleEliminar = async (event) => {
+        const token = getTokenLocalStorage();
+        if (!token) {
+            console.error('No se encontró el token en el local storage');
+            return;
+        }
+        
+        event.preventDefault();
+        try {
+            const response = await fetch(`${API_URL}/equipos/:${equipo.equipoId}`, {
+              method: 'DELETE',
+              headers: {
+                'Authorization': `Bearer ${getTokenLocalStorage('token')}`,
+                'Content-Type': 'application/json'
+              }
+            });
+
+            if (response.ok) {
+                console.log('Equipo eliminado exitosamente');
+            }
+        } catch (error) {
+            console.error('Error occurred:', error);
+        }
     }
 
     return (
