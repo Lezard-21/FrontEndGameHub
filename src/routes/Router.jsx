@@ -25,7 +25,7 @@ const Router = () => {
         <Route path='*' element={<NotFound/>} />
       </Route>
       <Route path='/autenticated' element={<ProtectedRoute><HomeLayout/></ProtectedRoute>}>
-        <Route index element={<ProtectedRoute><Home/></ProtectedRoute>} />
+        <Route index element={<Home/>} />
         <Route path='/autenticated/equipos' element={<ListaEquipo />} />
         <Route path='/autenticated/equipos/modificar/*' element={<FormularioEquipo />} />
         <Route path='/autenticated/equipos/agregar/' element={<h1>Agregar equipos</h1>} />
@@ -37,8 +37,6 @@ const Router = () => {
         <Route path='/autenticated/usuarios/empleados/' element={<h1>Eliminar Empleados</h1>} />
         <Route path='*' element={<NotFound/>} />
       </Route>
-      {/* <Route path='/login' element={<Login />} /> */}
-      {/* <Route path='/register' element={<Register />} /> */}
     </Routes>
   )
 }
