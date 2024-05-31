@@ -12,6 +12,9 @@ import ListaEquipo from '../pages/ListaEquipo'
 import ListaVideojuegos from '../pages/ListaVideojuegos'
 import FormularioEquipo from '../pages/FormularioEquipo'
 import NotFound from '../pages/NotFound'
+import ListaEmpleados from '../pages/ListaEmpleados'
+import AgregarEmpleado from '../pages/AgregarEmpleado'
+import EditarEmpleado from '../pages/EditarEmpleado'
 // import Login from '../pages/Login'
 
 const Router = () => {
@@ -31,7 +34,9 @@ const Router = () => {
         <Route path='/autenticated/juegos' element={<ListaVideojuegos />} />
         <Route path='/autenticated/juegos/modificar/*' element={<h1>Modificar juegos</h1>} />
         <Route path='/autenticated/juegos/agregar/' element={<h1>Agregar juegos</h1>} />
-        <Route path='/autenticated/empleados' element={<h1>Lista Empleados</h1>} />
+        <Route path='/autenticated/empleados' element={<ListaEmpleados />} />
+        <Route path='/autenticated/empleados/agregar' element={<AgregarEmpleado />} />
+        <Route path='/autenticated/empleados/modificar/*' element={<EditarEmpleado />} />
         <Route path='/autenticated/usuarios/empleados/*' element={<h1>Modificar Empleados</h1>} />
         <Route path='/autenticated/usuarios/empleados/' element={<h1>Eliminar Empleados</h1>} />
         <Route path='*' element={<NotFound/>} />

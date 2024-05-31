@@ -32,7 +32,7 @@ const Home = () => {
                             </button>
                             <button
                                 className="button is-success is-fullwidth"
-                                onClick={() => handleNavigation('/empleados')}
+                                onClick={() => handleNavigation('/autenticated/empleados')}
                             >
                                 Empleados
                             </button>
