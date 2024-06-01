@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import { useLocation } from 'react-router-dom';
 import { URL_API } from '../constants/Constants.js';
 import { getTokenLocalStorage } from '../utils/localStorage.js';
+import { useNavigate } from 'react-router-dom';
 
 const ModificarEquipo = () => {
     
@@ -9,6 +10,7 @@ const ModificarEquipo = () => {
     const [equipo, setEquipo] = useState(location.state?.equipo || null);
     const [disponibilidades, setDisponibilidades] = useState([]);
     const [selectedOption, setSelectedOption] = useState(equipo.disponibilidadId || "");
+    const navigate = useNavigate();
 
     const modificarEquipo = async (e) => {
         if (e) e.preventDefault();
@@ -33,11 +35,11 @@ const ModificarEquipo = () => {
             
             if (response.ok) {
                 alert('Equipo modificado correctamente');
-                setEquipo('');
+                navigate("/autenticated/equipos")
+                
             }else{
                 alert('Error al modificar el equipo');
             }
-
 
         }catch(error){
             console.error('Error occurred:', error);
