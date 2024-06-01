@@ -10,6 +10,8 @@ import CleanLayout from '../layouts/CleanLayout'
 import Home from '../pages/Home'
 import ListaEquipo from '../pages/ListaEquipo'
 import ListaVideojuegos from '../pages/ListaVideojuegos'
+import FormularioJuego from '../pages/FormularioJuego'
+import FormularioJuego2 from '../pages/FormularioJuego2'
 import ModificarEquipo from '../pages/ModificarEquipo'
 import AgregarEquipo from '../pages/AgregarEquipo'
 import NotFound from '../pages/NotFound'
@@ -36,7 +38,8 @@ const Router = () => {
         <Route path='/autenticated/equipos/modificar/*' element={<ModificarEquipo />} />
         <Route path='/autenticated/equipos/agregar' element={<AgregarEquipo />} />
         <Route path='/autenticated/juegos' element={<ListaVideojuegos />} />
-        <Route path='/autenticated/juegos/modificar/*' element={<h1>Modificar juegos</h1>} />
+        <Route path='/autenticated/juegos/modificar/:id' element={<FormularioJuego2 />} />
+        <Route path='/autenticated/juegos/nuevo' element={<FormularioJuego />} />
         <Route path='/autenticated/juegos/agregar/' element={<h1>Agregar juegos</h1>} />
         <Route path='/autenticated/empleados' element={<ProtectedByRol><ListaEmpleados /></ProtectedByRol>} />
         <Route path='/autenticated/empleados/agregar' element={<ProtectedByRol><AgregarEmpleado /></ProtectedByRol>} />

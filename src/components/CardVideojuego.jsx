@@ -1,38 +1,49 @@
+import { useNavigate } from 'react-router-dom';
+import { deleteMethod } from '../http';
+import { URL_API } from '../constants/Constants';
+import { getTokenLocalStorage } from '../utils/localStorage';
 
-const CardVideojuego = () => {
+const CardVideojuego = ({ videojuego }) => {
+    const isActive = videojuego.estatus.nombre_estatus === 'Activo';
+    const color = isActive ? 'green' : 'red';
+    const navigate = useNavigate();
+
+    const handleModificarClick = () => {
+        navigate(`/autenticated/juegos/modificar/${videojuego.juegoId}`, { state: { juegoId: videojuego.juegoId } });
+    };
+    
+    const handleEliminar = () => {
+        deleteMethod(`${URL_API}/juegos`,getTokenLocalStorage('token'),videojuego.juegoId);
+        navigate("/autenticated"); // Corregido el path de la redirección
+    }
+
     return (
         <div className="cell is-one-fifth">
             <div className="card">
                 <div className="card-image">
                     <figure className="image is-4by3">
                         <img
-                            src="https://bulma.io/assets/images/placeholders/1280x960.png"
-                            alt="Placeholder image"
+                            src={videojuego.url_imagen !== 'N/A' ? videojuego.url_imagen : 'https://bulma.io/images/placeholders/1280x960.png'}
+                            alt="Imagen del juego"
                         />
                     </figure>
                 </div>
                 <div className="card-content">
                     <div className="media">
-                        
                         <div className="media-content">
-                            <p className="title is-4">Nombre del juego</p>
-                            <p className="subtitle is-6">Desarrolladora</p>
+                            <p className="title is-5">{videojuego.nombre_juego}</p>
+                            <p className="subtitle is-6">{videojuego.plataforma}</p>
+                            <p className="subtitle is-4" style={{ color }}>{videojuego.estatus.nombre_estatus}</p>
                         </div>
-                    </div>
-
-                    <div className="content">
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus nec
-                        iaculis mauris.  
-                        <br />
-                        <div className="has-text-right">
-                        <p >2016</p>
-                        </div>
-                     
                     </div>
                 </div>
+                <footer className="card-footer">
+                    <a className="card-footer-item" onClick={handleModificarClick}>Modificar</a>
+                    <a className="card-footer-item" onClick={handleEliminar}>Eliminar</a>
+                </footer>
             </div>
         </div>
-    )
-}
+    );
+};
 
-export default CardVideojuego
+export default CardVideojuego;
